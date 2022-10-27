@@ -1,0 +1,25 @@
+{
+  "name": "checkin-helper",
+  "version": "1.0.0",
+  "description": "签到助手，每天定时为你处理各种小任务",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mezyme/checkin-helper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mezyme/checkin-helper/issues"
+  },
+  "homepage": "https://github.com/mezyme/checkin-helper#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "node-schedule": "^2.1.0"
+  }
+}
