@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mezyme/checkin-helper#readme",
   "dependencies": {
     "axios": "^0.26.1",
+    "dayjs": "^1.11.6",
     "node-schedule": "^2.1.0"
   }
 }
