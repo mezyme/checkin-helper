@@ -2,7 +2,7 @@
  * @Author: ZhaoYue
  * @Date: 2022-10-27 15:10:15
  * @Description: 文件内容描述
- * @LastEditTime: 2022-10-29 21:38:20
+ * @LastEditTime: 2022-11-21 09:32:52
  * @LastEditors: ZhaoYue
  * @FilePath: /checkin-helper/index.js
  */
@@ -27,6 +27,7 @@ var dayjs = require("dayjs");
 // 每天9：30分执行任务 掘金签到
 schedule.scheduleJob("0 05 21 * * *", () => {
   const nowTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-  console.log(`现在时间: ${nowTime}`);
+  console.log(`
+  ========== 现在时间: ${nowTime} ==========`);
   juejin.juejinCheckIn();
 });
