@@ -3,6 +3,7 @@ node_modules
 .idea
 *.log
 dist
+.vscode
 
 package-lock.json
 yarn-error.log

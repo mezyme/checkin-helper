@@ -2,7 +2,7 @@
  * @Author: ZhaoYue
  * @Date: 2022-10-27 15:09:54
  * @Description: 文件内容描述
- * @LastEditTime: 2022-10-27 20:54:35
+ * @LastEditTime: 2022-12-09 16:12:59
  * @LastEditors: ZhaoYue
  * @FilePath: /checkin-helper/src/juejin/juejin.js
  */
@@ -10,14 +10,15 @@
 // 引入axios
 const axios = require("axios");
 const config = require("./config");
+const axiosInstance = axios.create();
 // 配置请求地址
-axios.defaults.baseURL = config.baseUrl;
+axiosInstance.defaults.baseURL = config.baseUrl;
 
 // 设置cookie
-axios.defaults.headers["cookie"] = config.cookie;
+axiosInstance.defaults.headers["cookie"] = config.cookie;
 
 // 响应拦截处理
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => {
     const { data } = response;
     if (data.err_msg === "success" && data.err_no === 0) {
@@ -37,7 +38,7 @@ axios.interceptors.response.use(
  */
 const getCheckStatus = async () => {
   try {
-    const getCheckStatusRes = await axios({
+    const getCheckStatusRes = await axiosInstance({
       url: config.api.getCheckStatus,
       method: "get",
     });
@@ -52,7 +53,7 @@ const getCheckStatus = async () => {
  */
 const getCurrentPoint = async () => {
   try {
-    const getCurrentPointRes = await axios({
+    const getCurrentPointRes = await axiosInstance({
       url: config.api.getCurrentPoint,
       method: "get",
     });
@@ -68,7 +69,7 @@ const getCurrentPoint = async () => {
  */
 const getlotteryStatus = async () => {
   try {
-    const getlotteryStatusRes = await axios({
+    const getlotteryStatusRes = await axiosInstance({
       url: config.api.getlotteryStatus,
       method: "get",
     });
@@ -85,7 +86,7 @@ const getlotteryStatus = async () => {
 const getLuckyUserHistoryId = async () => {
   try {
     // 接口为分页查询  默认查询条10条数据 {page_no: 0, page_size: 5}
-    const luckyList = await axios({
+    const luckyList = await axiosInstance({
       url: config.api.getLuckyUserList,
       method: "post",
     });
@@ -106,7 +107,7 @@ const dipLucky = async () => {
     // 获取historyId
     const historyId = await getLuckyUserHistoryId();
     // 沾喜气接口   传递lottery_history_id
-    const dipLuckyRes = await axios({
+    const dipLuckyRes = await axiosInstance({
       url: config.api.dipLucky,
       method: "post",
       data: { lottery_history_id: historyId },
@@ -131,7 +132,7 @@ const draw = async () => {
     }
 
     // 开始抽奖
-    const drawRes = await axios({ url: config.api.draw, method: "post" });
+    const drawRes = await axiosInstance({ url: config.api.draw, method: "post" });
     console.log(`恭喜你抽到【${drawRes.data.lottery_name}】🎉`);
 
     // 先沾一下喜气
@@ -152,7 +153,7 @@ const draw = async () => {
  */
 const getCheckInDays = async () => {
   try {
-    const getCheckInDays = await axios({
+    const getCheckInDays = await axiosInstance({
       url: config.api.getCheckInDays,
       method: "get",
     });
@@ -175,11 +176,11 @@ exports.juejinCheckIn = async () => {
 
     if (!checkStatusRes) {
       // 签到
-      const checkInRes = await axios({
+      const checkInRes = await axiosInstance({
         url: config.api.checkIn,
         method: "post",
       });
-      console.log(`签到成功，当前总矿石${checkInRes.data.sum_point}`);
+      console.log(`掘金签到成功，当前总矿石${checkInRes.data.sum_point}`);
 
       // 查询签到天数
       const getCheckInDaysRes = await getCheckInDays();
@@ -190,7 +191,7 @@ exports.juejinCheckIn = async () => {
       // 签到成功 去抽奖
       await draw();
     } else {
-      console.log("今日已经签到 ✅");
+      console.log("掘金今日已经签到 ✅");
     }
   } catch (error) {
     console.error(`签到失败!=======> ${error}`);

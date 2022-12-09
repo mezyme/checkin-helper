@@ -2,7 +2,7 @@
  * @Author: ZhaoYue
  * @Date: 2022-10-27 15:10:15
  * @Description: 文件内容描述
- * @LastEditTime: 2022-11-21 09:32:52
+ * @LastEditTime: 2022-12-09 16:14:56
  * @LastEditors: ZhaoYue
  * @FilePath: /checkin-helper/index.js
  */
@@ -13,6 +13,8 @@ const schedule = require("node-schedule");
 const juejin = require("./src/juejin/juejin");
 // 引入dayjs
 var dayjs = require("dayjs");
+// 引入v2free签到
+const v2free = require("./src/v2free/v2free")
 
 /**
  * 以下是定时器示例
@@ -26,8 +28,9 @@ var dayjs = require("dayjs");
 
 // 每天9：30分执行任务 掘金签到
 schedule.scheduleJob("0 05 21 * * *", () => {
-  const nowTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-  console.log(`
-  ========== 现在时间: ${nowTime} ==========`);
-  juejin.juejinCheckIn();
+   const nowTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
+   console.log(`
+   ========== 现在时间: ${nowTime} ==========`);
+   juejin.juejinCheckIn();
+   v2free.v2CheckIn();
 });
