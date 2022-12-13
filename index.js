@@ -2,7 +2,7 @@
  * @Author: ZhaoYue
  * @Date: 2022-10-27 15:10:15
  * @Description: 文件内容描述
- * @LastEditTime: 2022-12-09 16:14:56
+ * @LastEditTime: 2022-12-13 16:55:25
  * @LastEditors: ZhaoYue
  * @FilePath: /checkin-helper/index.js
  */
@@ -34,3 +34,7 @@ schedule.scheduleJob("0 05 21 * * *", () => {
    juejin.juejinCheckIn();
    v2free.v2CheckIn();
 });
+
+// 直接运行一次
+juejin.juejinCheckIn();
+v2free.v2CheckIn();
