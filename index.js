@@ -2,7 +2,7 @@
  * @Author: ZhaoYue
  * @Date: 2022-10-27 15:10:15
  * @Description: 文件内容描述
- * @LastEditTime: 2022-12-13 16:55:25
+ * @LastEditTime: 2022-12-19 16:41:48
  * @LastEditors: ZhaoYue
  * @FilePath: /checkin-helper/index.js
  */
@@ -26,8 +26,8 @@ const v2free = require("./src/v2free/v2free")
     每周1的1点1分30秒触发 ：'30 1 1 * * 1'
  */
 
-// 每天9：30分执行任务 掘金签到
-schedule.scheduleJob("0 05 21 * * *", () => {
+// 每天8：10分执行任务 掘金签到
+schedule.scheduleJob("0 10 8 * * *", () => {
    const nowTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
    console.log(`
    ========== 现在时间: ${nowTime} ==========`);
