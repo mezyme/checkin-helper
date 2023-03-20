@@ -21,6 +21,8 @@
   "dependencies": {
     "axios": "^0.26.1",
     "dayjs": "^1.11.6",
-    "node-schedule": "^2.1.0"
+    "node-schedule": "^2.1.0",
+    "puppeteer": "^19.4.0",
+    "puppeteer-core": "^19.4.0"
   }
 }
